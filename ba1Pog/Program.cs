@@ -9,13 +9,18 @@ namespace ba1Pog
         {
             Console.Write("Enter folder path: ");
             string folderPath = Console.ReadLine();
+
+            Console.Write("Enter path to a file, which comments will be extracted into: ");
+            string resPath = Console.ReadLine();
+
+            string middlewarePath = folderPath + "/mid.txt";
             string[] filePaths = Directory.GetFiles(folderPath, "*", SearchOption.AllDirectories);
             foreach(string file in filePaths)
             {
-                string comment = ExtractComments(file);
+                string comment = ExtractComments(file, middlewarePath);
                 string fileNamePref = "\n\n-----------------  " + file + "  -----------------\n\n";
-                File.AppendAllText("C:/users/robert/desktop/ba/222.txt", fileNamePref);
-                File.AppendAllText("C:/users/robert/desktop/ba/222.txt", comment);
+                File.AppendAllText(resPath, fileNamePref);
+                File.AppendAllText(resPath, comment);
                 Console.WriteLine("Completed writing of " + file);
             }
 
@@ -23,12 +28,12 @@ namespace ba1Pog
             Console.WriteLine("we did it!");
             Console.ReadLine();
         }
-        static string ExtractComments(string filename)
+        static string ExtractComments(string filename, string middleware)
         {
             string[] lines = File.ReadAllLines(filename);
-            string middleware = "C:/users/robert/desktop/ba/555.txt";
             File.WriteAllLines(middleware, lines);
             string all_text = File.ReadAllText(middleware);
+            File.Delete(middleware);
             string comments = "";           
             all_text = all_text.Replace("\\\"", "");
 
