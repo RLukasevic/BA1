@@ -1,0 +1,10 @@
+C:\Users\Robert\desktop\ba\ba1\ba1\ba1Pog\ba1Pog\bin\Debug\netcoreapp1.1\ba1Pog.deps.json
+C:\Users\Robert\desktop\ba\ba1\ba1\ba1Pog\ba1Pog\bin\Debug\netcoreapp1.1\ba1Pog.runtimeconfig.json
+C:\Users\Robert\desktop\ba\ba1\ba1\ba1Pog\ba1Pog\bin\Debug\netcoreapp1.1\ba1Pog.runtimeconfig.dev.json
+C:\Users\Robert\desktop\ba\ba1\ba1\ba1Pog\ba1Pog\bin\Debug\netcoreapp1.1\ba1Pog.dll
+C:\Users\Robert\desktop\ba\ba1\ba1\ba1Pog\ba1Pog\bin\Debug\netcoreapp1.1\ba1Pog.pdb
+C:\Users\Robert\desktop\ba\ba1\ba1\ba1Pog\ba1Pog\obj\Debug\netcoreapp1.1\ba1Pog.csprojResolveAssemblyReference.cache
+C:\Users\Robert\desktop\ba\ba1\ba1\ba1Pog\ba1Pog\obj\Debug\netcoreapp1.1\ba1Pog.csproj.CoreCompileInputs.cache
+C:\Users\Robert\desktop\ba\ba1\ba1\ba1Pog\ba1Pog\obj\Debug\netcoreapp1.1\ba1Pog.AssemblyInfo.cs
+C:\Users\Robert\desktop\ba\ba1\ba1\ba1Pog\ba1Pog\obj\Debug\netcoreapp1.1\ba1Pog.dll
+C:\Users\Robert\desktop\ba\ba1\ba1\ba1Pog\ba1Pog\obj\Debug\netcoreapp1.1\ba1Pog.pdb
