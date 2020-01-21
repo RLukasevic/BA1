@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v1.1": {
-      "ba1pog/1.0.0": {
+      "ba1Pog/1.0.0": {
         "runtime": {
           "ba1Pog.dll": {}
         }
@@ -14,7 +14,7 @@
     }
   },
   "libraries": {
-    "ba1pog/1.0.0": {
+    "ba1Pog/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -18,9 +18,12 @@ namespace ba1Pog
             foreach(string file in filePaths)
             {
                 string comment = ExtractComments(file, middlewarePath);
-                string fileNamePref = "\n\n-----------------  " + file + "  -----------------\n\n";
-                File.AppendAllText(resPath, fileNamePref);
-                File.AppendAllText(resPath, comment);
+                if(comment.Length > 0)
+                {
+                    string fileNamePref = "\n\n-----------------  " + file + "  -----------------\n\n";
+                    File.AppendAllText(resPath, fileNamePref);
+                    File.AppendAllText(resPath, comment);
+                }
                 Console.WriteLine("Completed writing of " + file);
             }
 
@@ -28,77 +31,79 @@ namespace ba1Pog
             Console.WriteLine("we did it!");
             Console.ReadLine();
         }
-        static string ExtractComments(string filename, string middleware)
+        static string ExtractComments(string filePath, string middleware)
         {
-            string[] lines = File.ReadAllLines(filename);
+            string[] lines = File.ReadAllLines(filePath);
             File.WriteAllLines(middleware, lines);
-            string all_text = File.ReadAllText(middleware);
+            string allText = File.ReadAllText(middleware);
             File.Delete(middleware);
+            //string allText = String.Join("\n", lines);
+            //Console.WriteLine(allText);
             string comments = "";           
-            all_text = all_text.Replace("\\\"", "");
+            allText = allText.Replace("\\\"", "");
 
-                while (all_text.Length > 0)
+                while (allText.Length > 0)
                 {
-                    int string_pos = all_text.IndexOf("\"");
-                    int end_line_pos = all_text.IndexOf("//");
-                    int multi_line_pos = all_text.IndexOf("/*");
+                    int stringPos = allText.IndexOf("\"");
+                    int endLinePos = allText.IndexOf("//");
+                    int multiLinePos = allText.IndexOf("/*");
 
-                    if ((string_pos < 0) &&
-                        (end_line_pos < 0) &&
-                        (multi_line_pos < 0)) break;
+                    if ((stringPos < 0) &&
+                        (endLinePos < 0) &&
+                        (multiLinePos < 0)) break;
 
-                    if (string_pos < 0) string_pos = all_text.Length;
-                    if (end_line_pos < 0) end_line_pos = all_text.Length;
-                    if (multi_line_pos < 0) multi_line_pos = all_text.Length;
+                    if (stringPos < 0) stringPos = allText.Length;
+                    if (endLinePos < 0) endLinePos = allText.Length;
+                    if (multiLinePos < 0) multiLinePos = allText.Length;
 
-                    if ((string_pos < end_line_pos) &&
-                        (string_pos < multi_line_pos))
+                    if ((stringPos < endLinePos) &&
+                        (stringPos < multiLinePos))
                     {
-                        int end_pos = all_text.IndexOf("\"", string_pos + 1);
+                        int endPos = allText.IndexOf("\"", stringPos + 1);
 
-                        if (end_pos < 0)
+                        if (endPos < 0)
                         {
-                            all_text = "";
+                            allText = "";
                         }
                         else
                         {
-                            all_text = all_text.Substring(end_pos + 1);
+                            allText = allText.Substring(endPos + 1);
                         }
                     }
-                    else if (end_line_pos < multi_line_pos)
+                    else if (endLinePos < multiLinePos)
                     {
-                        int end_pos =
-                            all_text.IndexOf("\r\n", end_line_pos + 2);
+                        int endPos =
+                            allText.IndexOf("\r\n", endLinePos + 2);
 
-                        if (end_pos < 0)
+                        if (endPos < 0)
                         {
                             comments +=
-                                all_text.Substring(end_line_pos) + "\r\n";
-                            all_text = "";
+                                allText.Substring(endLinePos) + "\r\n";
+                            allText = "";
                         }
                         else
                         {
-                            comments += all_text.Substring(
-                                end_line_pos, end_pos - end_line_pos) + "\r\n";
-                            all_text = all_text.Substring(end_pos + 2);
+                            comments += allText.Substring(
+                                endLinePos, endPos - endLinePos) + "\r\n";
+                            allText = allText.Substring(endPos + 2);
                         }
                     }
                     else
                     {
-                        int end_pos = all_text.IndexOf(
-                            "*/", multi_line_pos + 2);
+                        int endPos = allText.IndexOf(
+                            "*/", multiLinePos + 2);
 
-                        if (end_pos < 0)
+                        if (endPos < 0)
                         {
                             comments +=
-                                all_text.Substring(multi_line_pos) + "\r\n";
-                            all_text = "";
+                                allText.Substring(multiLinePos) + "\r\n";
+                            allText = "";
                         }
                         else
                         {
-                            comments += all_text.Substring(multi_line_pos,
-                                end_pos - multi_line_pos + 2) + "\r\n";
-                            all_text = all_text.Substring(end_pos + 2);
+                            comments += allText.Substring(multiLinePos,
+                                endPos - multiLinePos + 2) + "\r\n";
+                            allText = allText.Substring(endPos + 2);
                         }
                     }
                 }
